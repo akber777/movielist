@@ -73,8 +73,9 @@ const MovieHeader = (props, dispatch) => {
 
             if (valueName == '' || valueDirector == '' || valuePoster == '') {
                 event.preventDefault()
-            }else{
+            } else {
                 getMovieNameValue()
+                addLocalStorage()
                 event.preventDefault();
             }
 
@@ -101,6 +102,32 @@ const MovieHeader = (props, dispatch) => {
 
         props.actions.sendName(films)
 
+
+    }
+
+
+
+
+    function addLocalStorage(event) {
+
+        const dataFilm = {
+            'valueName': movieName.value,
+            'valueDirector': movieDirector.value,
+            'valuePoster': moviePoster.value
+        }
+
+        let filmsStorage = [];
+
+        if (localStorage.getItem('films') === null) {
+            filmsStorage = [];
+        }
+        else {
+            filmsStorage = JSON.parse(localStorage.getItem('films'));
+        }
+
+        filmsStorage.push(dataFilm)
+
+        localStorage.setItem('films', JSON.stringify(filmsStorage));
 
     }
 
