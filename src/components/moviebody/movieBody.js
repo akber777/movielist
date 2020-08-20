@@ -46,7 +46,19 @@ const MovieBody = (props) => {
                     <tbody>
                         {
                             changeData == false ? (
-                                props.filmReducers == 'null' ? <tr><td><p className={'tableContainer__notFound'}>Movie Not Found</p></td></tr> : props.filmReducers.map(data => (
+                                props.filmReducers == 'null' ? JSON.parse(localStorage.getItem('films')).map(data => (
+                                    <tr>
+                                        <td>
+                                            <span>MOVIENAME</span>:<h1>{data.valueName} </h1>
+                                        </td>
+                                        <td>
+                                            <span> Movie Director</span>:<h1 className={'director'}>{data.valueDirector}</h1>
+                                        </td>
+                                        <td>
+                                            <span> Movie Poster</span>:<h1>{<img className={'tableContainer__img'} src={data.valuePoster} />}</h1>
+                                        </td>
+                                    </tr>
+                                )) : props.filmReducers.map(data => (
                                     data.map(result => (
                                         <tr>
                                             <td>
@@ -65,7 +77,7 @@ const MovieBody = (props) => {
                                     ))
 
                                 ))
-                            ) : JSON.parse(localStorage.getItem('films')) == null ? props.filmReducers == 'null' ? <tr><td><p className={'tableContainer__notFound'}>Movie Not Found</p></td></tr> : props.filmReducers.map(data => (
+                            ) : JSON.parse(localStorage.getItem('films')) == null ? props.filmReducers.map(data => (
                                 data.map(result => (
                                     <tr>
                                         <td>
