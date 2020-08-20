@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button, Table, Form, FormGroup, Row, Label, Input, FormText, Col, Container } from 'reactstrap';
-import './_movieBody.scss'
+import './_movieBody.scss';
+import { bindActionCreators } from 'redux';
+import * as addName from '../../redux/actions/addMovieName';
+
 
 const MovieBody = (props) => {
-
     return (
         < div className={'tableContainer'}>
             <Container>
@@ -18,13 +20,13 @@ const MovieBody = (props) => {
                                             <span>MOVIENAME</span>:<h1>{result[0].valueName} </h1>
                                         </td>
                                         <td>
-                                            <span> Movie Director</span>:<h1>{result[0].valueDirector}</h1>
+                                            <span> Movie Director</span>:<h1 className={'director'}>{result[0].valueDirector}</h1>
                                         </td>
                                         <td>
                                             <span> Movie Poster</span>:<h1>{<img className={'tableContainer__img'} src={result[0].valuePoster} />}</h1>
                                         </td>
                                         <td>
-                                            <Button color="danger">Delete</Button>{' '}
+                                            <Button onClick={props.actions.deleteMovie} color="danger">Delete</Button>{' '}
                                         </td>
                                     </tr>
                                 ))
@@ -48,4 +50,13 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(MovieBody);
+function mapDispatchToProps(dispatch) {
+
+    return {
+        actions: {
+            deleteMovie: bindActionCreators(addName.deleteMovie, dispatch)
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieBody);

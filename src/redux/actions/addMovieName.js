@@ -23,3 +23,35 @@ export function sendName(name) {
     }
 
 }
+
+
+
+// delete movie
+
+
+export function newMovieName(name) {
+
+
+    nameData.splice(name, 1);
+
+    return {
+        type: actionTypes.DELETEFILM,
+        payload: [nameData]
+    }
+
+}
+
+
+
+export function deleteMovie(event) {
+
+    let target = event.target.parentElement.parentElement;
+
+    let index = target.rowIndex;
+
+    return function (dispatch) {
+
+        dispatch(newMovieName(index))
+    }
+
+}
