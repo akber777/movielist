@@ -24,7 +24,7 @@ const MovieBody = (props) => {
                                             <span> Movie Poster</span>:<h1>{<img className={'tableContainer__img'} src={result[0].valuePoster} />}</h1>
                                         </td>
                                         <td>
-                                            <Button color="danger">danger</Button>{' '}
+                                            <Button color="danger">Delete</Button>{' '}
                                         </td>
                                     </tr>
                                 ))
